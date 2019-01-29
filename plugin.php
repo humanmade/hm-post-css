@@ -84,13 +84,16 @@ function save_post( $post_id, WP_Post $post ) {
 
 add_action( 'save_post', __NAMESPACE__ . '\\save_post', 10, 2 );
 
+/**
+ * Output CSS on a post object.
+ */
 function output_css() {
 	if ( ! is_singular() ) {
 		return;
 	}
 
 	$post_id = get_queried_object_id();
-	$css = wp_get_custom_css( 'hm-post-css-' . $post_id );
+	$css     = wp_get_custom_css( 'hm-post-css-' . $post_id );
 
 	if ( empty( $css ) ) {
 		return;
