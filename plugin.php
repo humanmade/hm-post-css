@@ -10,6 +10,11 @@ namespace HM\PostCSS;
 
 use WP_Post;
 
+/**
+ * Add a meta box for custom CSS on a post.
+ *
+ * @param string $post_type Post type we're parsing.
+ */
 function add_meta_boxes( $post_type ) {
 	if ( ! in_array( $post_type, get_post_types( [ 'public' => true ] ), true ) ) {
 		return;
@@ -25,7 +30,12 @@ function add_meta_boxes( $post_type ) {
 
 add_action( 'add_meta_boxes', __NAMESPACE__ . '\add_meta_boxes' );
 
-function meta_box( WP_POST $post ) {
+/**
+ * Output a metabox for the custom CSS.
+ *
+ * @param WP_Post $post
+ */
+function meta_box( WP_Post $post ) {
 	$css = wp_get_custom_css( 'hm-post-css-' . $post->ID );
 	$css = esc_textarea( $css );
 
@@ -46,6 +56,12 @@ function meta_box( WP_POST $post ) {
 	echo '<textarea class="widefat" name="hm_post_css" rows="15" cols="100%">' . $css . '</textarea>';
 }
 
+/**
+ * Save post metadata.
+ *
+ * @param int     $post_id ID of the post we're saving data for.
+ * @param WP_Post $post    Post object of the post we're saving data for.
+ */
 function save_post( $post_id, WP_Post $post ) {
 	if ( $post->post_type === 'custom_css' ) {
 		return;
