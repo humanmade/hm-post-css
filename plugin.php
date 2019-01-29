@@ -23,12 +23,12 @@ function add_meta_boxes( $post_type ) {
 	add_meta_box(
 		'hm-post-css',
 		__( 'Custom CSS', 'hm-post-css' ),
-		__NAMESPACE__ . '\meta_box',
+		__NAMESPACE__ . '\\meta_box',
 		$post_type
 	);
 }
 
-add_action( 'add_meta_boxes', __NAMESPACE__ . '\add_meta_boxes' );
+add_action( 'add_meta_boxes', __NAMESPACE__ . '\\add_meta_boxes' );
 
 /**
  * Output a metabox for the custom CSS.
@@ -82,7 +82,7 @@ function save_post( $post_id, WP_Post $post ) {
 	] );
 }
 
-add_action( 'save_post', __NAMESPACE__ . '\save_post', 10, 2 );
+add_action( 'save_post', __NAMESPACE__ . '\\save_post', 10, 2 );
 
 function output_css() {
 	if ( ! is_singular() ) {
@@ -101,4 +101,4 @@ function output_css() {
 	);
 }
 
-add_action( 'wp_head', __NAMESPACE__ . '\output_css', 200 );
+add_action( 'wp_head', __NAMESPACE__ . '\\output_css', 200 );
