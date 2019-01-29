@@ -1,0 +1,11 @@
+{
+  "name": "humanmade/post-css",
+  "type": "wordpress-plugin",
+  "description": "Enables adding custom CSS for a post",
+  "homepage": "https://humanmade.com",
+  "license": "GPL-2.0+",
+  "version": "1.0.0",
+  "require": {
+    "php": ">=7.0"
+  }
+}
