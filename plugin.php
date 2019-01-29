@@ -4,6 +4,7 @@
  * Description: Enables adding custom CSS for a post.
  * Author: Human Made Limited
  * Author URL: https://humanmade.com
+ * Version: 1.0.0
  */
 
 namespace HM\PostCSS;
