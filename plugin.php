@@ -17,7 +17,7 @@ use WP_Post;
  * @param string $post_type Post type we're parsing.
  */
 function add_meta_boxes( $post_type ) {
-	if ( ! in_array( $post_type, get_post_types( [ 'public' => true ] ), true ) ) {
+	if ( ! is_customizable_post_type( $post_type ) ) {
 		return;
 	}
 
@@ -106,3 +106,20 @@ function output_css() {
 }
 
 add_action( 'wp_head', __NAMESPACE__ . '\\output_css', 200 );
+
+/**
+ * Check whether a post type is customizable with CSS or not.
+ *
+ * @param string $post_type
+ * @return bool
+ */
+function is_customizable_post_type( string $post_type ) : bool {
+	/**
+	 * Filter post types that can be customized with CSS.
+	 *
+	 * @param array $post_types Array of post types.
+	 */
+	$post_types = apply_filters( 'hm-post-css-customizable-post-types', get_post_types( [ 'public' => true ] ) );
+
+	return in_array( $post_type, $post_types, true );
+}
