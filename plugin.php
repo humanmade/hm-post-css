@@ -76,6 +76,10 @@ function save_post( $post_id, WP_Post $post ) {
 		return;
 	}
 
+	if ( defined( 'DOING_CRON' ) ) {
+		return;
+	}
+
 	$css = filter_input( INPUT_POST, 'hm_post_css', FILTER_SANITIZE_STRING );
 
 	wp_update_custom_css_post( $css, [
