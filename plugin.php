@@ -82,9 +82,11 @@ function save_post( $post_id, WP_Post $post ) {
 
 	$css = filter_input( INPUT_POST, 'hm_post_css', FILTER_SANITIZE_STRING );
 
-	wp_update_custom_css_post( $css, [
-		'stylesheet' => 'hm-post-css-' . $post_id,
-	] );
+	if ( ! empty( $css ) ) {
+		wp_update_custom_css_post( $css, [
+			'stylesheet' => 'hm-post-css-' . $post_id,
+		] );
+	}
 }
 
 add_action( 'save_post', __NAMESPACE__ . '\\save_post', 10, 2 );
