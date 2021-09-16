@@ -80,10 +80,11 @@ function save_post( $post_id, WP_Post $post ) {
 		return;
 	}
 
-	$css = filter_input( INPUT_POST, 'hm_post_css', FILTER_SANITIZE_STRING );
+	$new_css     = filter_input( INPUT_POST, 'hm_post_css', FILTER_SANITIZE_STRING );
+	$current_css = wp_get_custom_css( 'hm-post-css-' . $post_id );
 
-	if ( ! empty( $css ) ) {
-		wp_update_custom_css_post( $css, [
+	if ( ! empty( $new_css ) || $new_css !== $current_css ) {
+		wp_update_custom_css_post( $new_css, [
 			'stylesheet' => 'hm-post-css-' . $post_id,
 		] );
 	}
